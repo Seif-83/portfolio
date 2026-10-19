@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seif Amr | Full-Stack Web Dev (Spider-Verse Edition)</title>
+  <title>Seif Amr | Full-Stack Web Dev &amp; AI Automation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
           colors: {
             spider: {
               black: '#07080c',
-              card: '#0e111a',
+              card: '#0d1018',
               cardHover: '#131826',
               red: '#ff1744',
               crimson: '#e11d48',
@@ -43,8 +43,8 @@
     body {
       background-color: #07080c;
       background-image: 
-        radial-gradient(circle at 15% 20%, rgba(255, 23, 68, 0.09) 0%, transparent 40%),
-        radial-gradient(circle at 85% 70%, rgba(0, 240, 255, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 15% 20%, rgba(255, 23, 68, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(0, 240, 255, 0.07) 0%, transparent 45%),
         linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
       background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
@@ -59,14 +59,14 @@
       background: linear-gradient(90deg, #ff1744 0%, #ff2a5f 50%, #00f0ff 100%);
       z-index: 100;
       width: 0%;
-      box-shadow: 0 0 12px rgba(255, 23, 68, 0.8), 0 0 20px rgba(0, 240, 255, 0.6);
+      box-shadow: 0 0 12px rgba(255, 23, 68, 0.9), 0 0 20px rgba(0, 240, 255, 0.7);
       transition: width 0.1s ease-out;
     }
 
     /* Scroll Reveal System */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(28px);
       filter: blur(4px);
       transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
                   transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
@@ -85,14 +85,38 @@
     .reveal-delay-3 { transition-delay: 270ms; }
     .reveal-delay-4 { transition-delay: 360ms; }
     .reveal-delay-5 { transition-delay: 450ms; }
-    .reveal-delay-6 { transition-delay: 540ms; }
 
-    /* Spider Glows */
-    .spider-glow-red {
-      box-shadow: 0 0 30px -5px rgba(255, 23, 68, 0.25);
+    /* 3D Tilt Card Base */
+    .tilt-card {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.25s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+      will-change: transform;
     }
-    .spider-glow-cyan {
-      box-shadow: 0 0 30px -5px rgba(0, 240, 255, 0.2);
+    .card-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    /* Spider-Sense Glitch Hover */
+    .glitch-hover {
+      display: inline-block;
+      transition: text-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .glitch-hover:hover {
+      text-shadow: -2px 0 #ff1744, 2px 0 #00f0ff;
+      animation: microGlitch 0.35s ease infinite alternate;
+    }
+    @keyframes microGlitch {
+      0% { transform: translate(0); }
+      40% { transform: translate(-1px, 0.5px); }
+      80% { transform: translate(1px, -0.5px); }
+      100% { transform: translate(0); }
     }
 
     /* Ambient Pulsing Glow */
@@ -101,20 +125,49 @@
         box-shadow: 0 0 20px rgba(255, 23, 68, 0.2), 0 0 0 1px rgba(255, 23, 68, 0.3);
       }
       50% {
-        box-shadow: 0 0 35px rgba(255, 23, 68, 0.45), 0 0 0 1px rgba(255, 23, 68, 0.6);
+        box-shadow: 0 0 35px rgba(255, 23, 68, 0.45), 0 0 0 1px rgba(255, 23, 68, 0.65);
       }
     }
     .spider-pulse-active {
-      animation: pulseGlow 3s infinite ease-in-out;
+      animation: pulseGlow 3.5s infinite ease-in-out;
     }
 
-    /* Micro float animation */
-    @keyframes subtleFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    /* Animated Liquid Neon Border for AI Feature Card */
+    .neon-border-wrapper {
+      position: relative;
+      border-radius: 1.1rem;
+      padding: 1.5px;
+      overflow: hidden;
+      background: linear-gradient(90deg, rgba(255,23,68,0.5), rgba(0,240,255,0.5), rgba(225,29,72,0.5), rgba(0,240,255,0.5));
+      background-size: 300% 300%;
+      animation: rotateNeon 6s linear infinite;
     }
-    .animate-float {
-      animation: subtleFloat 5s infinite ease-in-out;
+    @keyframes rotateNeon {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Chic Section Divider Beam */
+    .beam-divider {
+      position: relative;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 23, 68, 0.35), rgba(0, 240, 255, 0.35), transparent);
+      overflow: hidden;
+    }
+    .beam-divider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 140px;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #ff1744, #00f0ff, transparent);
+      animation: beamSweep 5s infinite linear;
+    }
+    @keyframes beamSweep {
+      0% { transform: translateX(-150px); }
+      100% { transform: translateX(1100px); }
     }
 
     /* Mobile Menu & Button Soft Animations */
@@ -189,11 +242,17 @@
 </head>
 <body class="text-zinc-100 font-sans antialiased selection:bg-spider-red selection:text-white relative">
 
+  <!-- Interactive Spider-Web Particle Canvas Background -->
+  <canvas id="web-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- Desktop Dynamic Spotlight Cursor Follower -->
+  <div id="cursor-glow" class="hidden md:block pointer-events-none fixed w-[480px] h-[480px] rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 z-10 opacity-30 bg-[radial-gradient(circle,rgba(255,23,68,0.22)_0%,rgba(0,240,255,0.12)_45%,transparent_70%)]"></div>
+
   <!-- Top Scroll Progress Bar -->
   <div id="scroll-progress"></div>
 
   <!-- Top Announcement Bar / Spider-Sense Status -->
-  <div class="border-b border-spider-red/20 bg-spider-red/5 text-center py-2 px-3 sm:px-4">
+  <div class="border-b border-spider-red/20 bg-spider-red/5 text-center py-2 px-3 sm:px-4 relative z-30">
     <div class="max-w-5xl mx-auto flex items-center justify-center gap-2 text-[11px] sm:text-xs font-mono text-spider-red tracking-wider">
       <span class="relative flex h-2 w-2 shrink-0">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-spider-red opacity-75"></span>
@@ -207,10 +266,9 @@
   <nav class="sticky top-0 z-40 backdrop-blur-xl bg-spider-black/90 border-b border-spider-red/20">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       
-      <!-- Brand & New Custom Spider-Man Emblem Logo -->
-      <a href="#" class="font-heading font-bold text-lg sm:text-xl tracking-tight text-white flex items-center gap-2.5 group">
-        <!-- Custom Vector Spider-Man Mask Eyes Logo -->
-        <span>Seif Amr<span class="text-spider-red">.dev</span></span>
+      <!-- Brand & Title -->
+      <a href="#" class="font-heading font-bold text-lg sm:text-xl tracking-tight text-white flex items-center gap-2 group">
+        <span class="glitch-hover">Seif Amr<span class="text-spider-red">.dev</span></span>
       </a>
 
       <!-- Desktop Nav Links -->
@@ -219,11 +277,11 @@
         <a href="#skills" class="hover:text-spider-cyan transition">skills</a>
         <a href="#projects" class="hover:text-spider-cyan transition">projects</a>
         <a href="#education" class="hover:text-spider-cyan transition">education</a>
-        <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-spider-cyan transition inline-flex items-center gap-1 text-zinc-300">
+        <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-spider-cyan transition inline-flex items-center gap-1.5 text-zinc-300 group">
           <span>Seifinity</span>
-          <svg class="w-3.5 h-3.5 text-spider-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          <svg class="w-3.5 h-3.5 text-spider-cyan group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
         </a>
-        <a href="#contact" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-spider-red to-red-700 hover:from-red-600 hover:to-red-800 text-white font-medium transition shadow-lg shadow-spider-red/30">Get in Touch</a>
+        <a href="#contact" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-spider-red to-red-700 hover:from-red-600 hover:to-red-800 text-white font-medium transition shadow-lg shadow-spider-red/30 hover:scale-105 active:scale-95 duration-200">Get in Touch</a>
       </div>
 
       <!-- Mobile Hamburger Button with Soft Morph -->
@@ -256,7 +314,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="about" class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-16 relative">
+  <section id="about" class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-16 relative z-20">
     <div class="absolute -top-10 right-5 sm:right-10 w-48 sm:w-72 h-48 sm:h-72 bg-spider-red/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute top-40 -left-5 sm:-left-10 w-48 sm:w-72 h-48 sm:h-72 bg-spider-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -266,31 +324,65 @@
     </div>
 
     <h1 class="reveal reveal-delay-1 text-3xl sm:text-5xl md:text-6xl font-heading font-extrabold tracking-tight text-white max-w-3xl leading-[1.15]">
-      Weaving scalable code, web applications &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-spider-red via-red-500 to-spider-cyan">AI workflows</span>.
+      Weaving scalable code, web applications &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-spider-red via-red-500 to-spider-cyan glitch-hover">AI workflows</span>.
     </h1>
 
     <p class="reveal reveal-delay-2 mt-5 sm:mt-6 text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed">
       I’m <span class="text-white font-semibold underline decoration-spider-red decoration-2 underline-offset-4">Seif Amr</span>, Computer &amp; Data Science student at Alexandria University. I engineer high-performance web applications using React, Node.js, and autonomous workflow automation with n8n.
     </p>
 
+    <!-- Chic HUD Metrics Dashboard -->
+    <div class="reveal reveal-delay-2 mt-8 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-xl">
+      <div class="p-3.5 rounded-xl bg-spider-card/80 border border-spider-red/25 backdrop-blur-md hover:border-spider-red/60 transition group">
+        <div class="text-[11px] font-mono text-zinc-400 flex items-center justify-between">
+          <span>CGPA</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-spider-red animate-ping"></span>
+        </div>
+        <div class="text-xl sm:text-2xl font-heading font-bold text-white mt-1 group-hover:text-spider-red transition">3.15 <span class="text-xs font-mono text-spider-red">/ 4.0</span></div>
+        <div class="text-[11px] text-zinc-500 font-mono truncate">Alexandria Univ</div>
+      </div>
+      <div class="p-3.5 rounded-xl bg-spider-card/80 border border-spider-cyan/25 backdrop-blur-md hover:border-spider-cyan/60 transition group">
+        <div class="text-[11px] font-mono text-zinc-400 flex items-center justify-between">
+          <span>FOCUS</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-spider-cyan animate-pulse"></span>
+        </div>
+        <div class="text-xl sm:text-2xl font-heading font-bold text-white mt-1 group-hover:text-spider-cyan transition">Full-Stack</div>
+        <div class="text-[11px] text-zinc-500 font-mono truncate">React &bull; Node &bull; APIs</div>
+      </div>
+      <div class="col-span-2 sm:col-span-1 p-3.5 rounded-xl bg-spider-card/80 border border-purple-500/25 backdrop-blur-md hover:border-purple-500/60 transition group">
+        <div class="text-[11px] font-mono text-zinc-400 flex items-center justify-between">
+          <span>AUTOMATION</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+        </div>
+        <div class="text-xl sm:text-2xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-spider-red to-spider-cyan mt-1">n8n Flows</div>
+        <div class="text-[11px] text-zinc-500 font-mono truncate">AI Agent Chaining</div>
+      </div>
+    </div>
+
+    <!-- Hero CTA Buttons -->
     <div class="reveal reveal-delay-3 mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-      <a href="#projects" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-spider-red to-red-700 hover:from-red-600 hover:to-red-800 text-white font-medium transition shadow-lg shadow-spider-red/30 inline-flex items-center justify-center gap-2">
+      <a href="#projects" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-spider-red to-red-700 hover:from-red-600 hover:to-red-800 text-white font-medium transition shadow-lg shadow-spider-red/30 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] duration-200">
         <span>View My Web Work</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
       </a>
-      <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-spider-cyan/40 bg-spider-cyan/5 hover:bg-spider-cyan/15 text-spider-cyan font-medium transition inline-flex items-center justify-center gap-2 shadow-lg shadow-spider-cyan/10">
+      <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-spider-cyan/40 bg-spider-cyan/5 hover:bg-spider-cyan/15 text-spider-cyan font-medium transition inline-flex items-center justify-center gap-2 shadow-lg shadow-spider-cyan/10 hover:scale-[1.02] active:scale-[0.98] duration-200">
         <span>Seifinity Showcase</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
       </a>
-      <a href="#contact" class="w-full sm:w-auto text-center px-6 py-3 rounded-xl border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 text-zinc-300 font-medium transition">
+      <a href="#contact" class="w-full sm:w-auto text-center px-6 py-3 rounded-xl border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 text-zinc-300 font-medium transition hover:scale-[1.02] active:scale-[0.98] duration-200">
         Contact Me
       </a>
     </div>
   </section>
 
+  <!-- Section Beam Divider -->
+  <div class="beam-divider max-w-5xl mx-auto"></div>
+
   <!-- Bento Skills Section -->
-  <section id="skills" class="max-w-5xl mx-auto px-4 sm:px-6 py-16 border-t border-spider-red/20">
+  <section id="skills" class="max-w-5xl mx-auto px-4 sm:px-6 py-16 relative z-20">
     <div class="reveal mb-2 flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-spider-red animate-ping"></span>
+      <span class="text-xs font-mono text-zinc-400 tracking-wider">TECHNICAL ARSENAL</span>
     </div>
     <h2 class="reveal reveal-delay-1 text-2xl sm:text-3xl font-heading font-bold tracking-tight text-white mb-2">Powers &amp; Tech Stack</h2>
     <p class="reveal reveal-delay-2 text-sm text-zinc-400 mb-8">Frameworks, languages, and automation pipelines I deploy to ship web software.</p>
@@ -298,124 +390,142 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       
       <!-- Front-End -->
-      <div class="reveal reveal-delay-1 p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-cyan/25 hover:border-spider-cyan/60 hover:-translate-y-1 transition-all duration-300 group">
+      <div class="reveal reveal-delay-1 tilt-card p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-cyan/25 hover:border-spider-cyan/60 transition group">
+        <div class="card-glare"></div>
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-mono text-spider-cyan uppercase tracking-wider font-semibold">Front-End</h3>
           <span class="text-xs text-zinc-600 font-mono">01</span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-spider-cyan/30 text-cyan-200">React</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">TypeScript</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">JavaScript</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">HTML5 / CSS3</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">UI/UX Design</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-spider-cyan/30 text-cyan-200 hover:border-spider-cyan transition">React</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">TypeScript</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">JavaScript</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">HTML5 / CSS3</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">UI/UX Design</span>
         </div>
       </div>
 
       <!-- Back-End -->
-      <div class="reveal reveal-delay-2 p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-red/25 hover:border-spider-red/60 hover:-translate-y-1 transition-all duration-300 group">
+      <div class="reveal reveal-delay-2 tilt-card p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-red/25 hover:border-spider-red/60 transition group">
+        <div class="card-glare"></div>
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-mono text-spider-red uppercase tracking-wider font-semibold">Back-End &amp; APIs</h3>
           <span class="text-xs text-zinc-600 font-mono">02</span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-spider-red/30 text-red-200">Node.js</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Express.js</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">RESTful APIs</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">CRUD Operations</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-spider-red/30 text-red-200 hover:border-spider-red transition">Node.js</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">Express.js</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">RESTful APIs</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">CRUD Operations</span>
         </div>
       </div>
 
       <!-- Databases -->
-      <div class="reveal reveal-delay-3 p-5 sm:p-6 rounded-2xl bg-spider-card border border-purple-500/25 hover:border-purple-500/60 hover:-translate-y-1 transition-all duration-300 group">
+      <div class="reveal reveal-delay-3 tilt-card p-5 sm:p-6 rounded-2xl bg-spider-card border border-purple-500/25 hover:border-purple-500/60 transition group">
+        <div class="card-glare"></div>
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-mono text-purple-400 uppercase tracking-wider font-semibold">Databases</h3>
           <span class="text-xs text-zinc-600 font-mono">03</span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-purple-500/30 text-purple-200">Supabase</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">MongoDB</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Firebase</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">ERD Modeling</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-purple-500/30 text-purple-200 hover:border-purple-500 transition">Supabase</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">MongoDB</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">Firebase</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">ERD Modeling</span>
         </div>
       </div>
 
       <!-- Programming -->
-      <div class="reveal reveal-delay-1 p-5 sm:p-6 rounded-2xl bg-spider-card border border-amber-500/25 hover:border-amber-500/60 hover:-translate-y-1 transition-all duration-300 group">
+      <div class="reveal reveal-delay-1 tilt-card p-5 sm:p-6 rounded-2xl bg-spider-card border border-amber-500/25 hover:border-amber-500/60 transition group">
+        <div class="card-glare"></div>
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-mono text-amber-400 uppercase tracking-wider font-semibold">Programming</h3>
           <span class="text-xs text-zinc-600 font-mono">04</span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Python</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">C++</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Java</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Dart</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-amber-500/40 transition">Python</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-amber-500/40 transition">C++</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-amber-500/40 transition">Java</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-amber-500/40 transition">Dart</span>
         </div>
       </div>
 
       <!-- Data -->
-      <div class="reveal reveal-delay-2 p-5 sm:p-6 rounded-2xl bg-spider-card border border-blue-500/25 hover:border-blue-500/60 hover:-translate-y-1 transition-all duration-300 group">
+      <div class="reveal reveal-delay-2 tilt-card p-5 sm:p-6 rounded-2xl bg-spider-card border border-blue-500/25 hover:border-blue-500/60 transition group">
+        <div class="card-glare"></div>
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-mono text-blue-400 uppercase tracking-wider font-semibold">Data Science</h3>
           <span class="text-xs text-zinc-600 font-mono">05</span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Data Analysis</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Data Science</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Excel</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-blue-500/40 transition">Data Analysis</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-blue-500/40 transition">Data Science</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-blue-500/40 transition">Excel</span>
         </div>
       </div>
 
       <!-- Tools -->
-      <div class="reveal reveal-delay-3 p-5 sm:p-6 rounded-2xl bg-spider-card border border-emerald-500/25 hover:border-emerald-500/60 hover:-translate-y-1 transition-all duration-300 group">
+      <div class="reveal reveal-delay-3 tilt-card p-5 sm:p-6 rounded-2xl bg-spider-card border border-emerald-500/25 hover:border-emerald-500/60 transition group">
+        <div class="card-glare"></div>
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-sm font-mono text-emerald-400 uppercase tracking-wider font-semibold">Tools &amp; Code</h3>
           <span class="text-xs text-zinc-600 font-mono">06</span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-emerald-500/30 text-emerald-300">n8n</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Git / GitHub</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Clean Architecture</span>
-          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">Collaboration</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-emerald-500/30 text-emerald-300 hover:border-emerald-500 transition">n8n</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">Git / GitHub</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">Clean Architecture</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">Collaboration</span>
         </div>
       </div>
 
-      <!-- Featured: AI & Automation (Spider-Verse Tech Grid) -->
-      <div class="reveal md:col-span-3 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-spider-red/15 via-spider-card to-spider-cyan/15 border-2 border-spider-red/50 hover:border-spider-red transition-all duration-300 spider-pulse-active relative overflow-hidden">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-          <div class="flex items-center gap-2">
-            <span class="text-xl">⚡</span>
-            <h3 class="text-sm sm:text-base font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-spider-red via-red-400 to-spider-cyan uppercase tracking-wider">AI &amp; Workflow Automation</h3>
+      <!-- Featured: AI & Automation (Liquid Neon Rotating Border) -->
+      <div class="reveal md:col-span-3 neon-border-wrapper tilt-card spider-pulse-active">
+        <div class="p-5 sm:p-6 rounded-[1.05rem] bg-gradient-to-r from-spider-card via-black to-spider-card relative overflow-hidden">
+          <div class="card-glare"></div>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">⚡</span>
+              <h3 class="text-sm sm:text-base font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-spider-red via-red-400 to-spider-cyan uppercase tracking-wider">AI &amp; Workflow Automation</h3>
+            </div>
+            <span class="text-xs text-zinc-400 font-mono">Autonomous Chains &amp; Smart n8n Pipelines</span>
           </div>
-          <span class="text-xs text-zinc-400 font-mono">Autonomous Chains &amp; Smart n8n Pipelines</span>
-        </div>
-        <div class="flex flex-wrap gap-2 sm:gap-2.5 mt-2">
-          <span class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-spider-red/25 text-white border border-spider-red/60 shadow-sm shadow-spider-red/40">AI Automation using n8n</span>
-          <span class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 border border-spider-cyan/40 text-cyan-200">n8n Workflows</span>
-          <span class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300">LLM &amp; AI Agent Chaining</span>
-          <span class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300">Webhooks &amp; API Integrations</span>
-          <span class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300">Process Automation</span>
+          <div class="flex flex-wrap gap-2 sm:gap-2.5 mt-2">
+            <span class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-spider-red/25 text-white border border-spider-red/60 shadow-sm shadow-spider-red/40 hover:scale-105 transition-transform duration-200">AI Automation using n8n</span>
+            <span class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 border border-spider-cyan/40 text-cyan-200 hover:scale-105 transition-transform duration-200">n8n Workflows</span>
+            <span class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">LLM &amp; AI Agent Chaining</span>
+            <span class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">Webhooks &amp; API Integrations</span>
+            <span class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:border-zinc-700 transition">Process Automation</span>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
+  <!-- Section Beam Divider -->
+  <div class="beam-divider max-w-5xl mx-auto"></div>
+
   <!-- Projects Section -->
-  <section id="projects" class="max-w-5xl mx-auto px-4 sm:px-6 py-16 border-t border-spider-red/20">
+  <section id="projects" class="max-w-5xl mx-auto px-4 sm:px-6 py-16 relative z-20">
     <div class="reveal mb-2 flex items-center gap-2">
-      <span class="text-spider-cyan font-mono text-xs sm:text-sm tracking-widest">// FIELD MISSIONS &amp; DEPLOYMENTS</span>
+      <span class="w-2 h-2 rounded-full bg-spider-cyan animate-ping"></span>
+      <span class="text-xs font-mono text-zinc-400 tracking-wider">FEATURED DEPLOYMENTS</span>
     </div>
-    <h2 class="reveal reveal-delay-1 text-2xl sm:text-3xl font-heading font-bold tracking-tight text-white mb-2">Featured Projects</h2>
+    <h2 class="reveal reveal-delay-1 text-2xl sm:text-3xl font-heading font-bold tracking-tight text-white mb-2">Projects &amp; Portfolio</h2>
     <p class="reveal reveal-delay-2 text-sm text-zinc-400 mb-8">Full-stack applications and digital systems deployed to the web.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       
       <!-- Project 1: Seifinity -->
-      <div class="reveal reveal-delay-1 group p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-red/40 hover:border-spider-red hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between spider-glow-red">
+      <div class="reveal reveal-delay-1 tilt-card group p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-red/40 hover:border-spider-red transition-all duration-300 flex flex-col justify-between">
+        <div class="card-glare"></div>
         <div>
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono text-spider-red font-semibold uppercase tracking-wider">Flagship Showcase</span>
+            <span class="text-xs font-mono text-spider-red font-semibold uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-spider-red"></span>
+              Flagship Showcase
+            </span>
             <span class="text-xs text-zinc-500 font-mono">Brand Universe</span>
           </div>
           <h3 class="text-lg sm:text-xl font-heading font-bold text-white group-hover:text-spider-red transition">
@@ -428,9 +538,9 @@
             Personal brand showcase featuring dynamic interactive UI, creative engineering experiments, and production web applications.
           </p>
           <div class="mt-5">
-            <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-spider-red/10 border border-spider-red/40 text-xs font-mono text-red-300 hover:bg-spider-red hover:text-white transition group">
+            <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-spider-red/10 border border-spider-red/40 text-xs font-mono text-red-300 hover:bg-spider-red hover:text-white transition group/btn">
               <span>Launch Live Site</span>
-              <span class="group-hover:translate-x-1 transition-transform">↗</span>
+              <span class="group-hover/btn:translate-x-1 transition-transform">↗</span>
             </a>
           </div>
         </div>
@@ -442,10 +552,14 @@
       </div>
 
       <!-- Project 2: Responsive Full-Stack Web App -->
-      <div class="reveal reveal-delay-2 group p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-cyan/40 hover:border-spider-cyan hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between spider-glow-cyan">
+      <div class="reveal reveal-delay-2 tilt-card group p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-cyan/40 hover:border-spider-cyan transition-all duration-300 flex flex-col justify-between">
+        <div class="card-glare"></div>
         <div>
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono text-spider-cyan font-semibold uppercase tracking-wider">Full-Stack System</span>
+            <span class="text-xs font-mono text-spider-cyan font-semibold uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-spider-cyan"></span>
+              Full-Stack System
+            </span>
             <span class="text-xs text-zinc-500 font-mono">CRUD Architecture</span>
           </div>
           <h3 class="text-lg sm:text-xl font-heading font-bold text-white group-hover:text-spider-cyan transition">
@@ -469,27 +583,32 @@
     </div>
   </section>
 
+  <!-- Section Beam Divider -->
+  <div class="beam-divider max-w-5xl mx-auto"></div>
+
   <!-- Education & Languages -->
-  <section id="education" class="max-w-5xl mx-auto px-4 sm:px-6 py-16 border-t border-spider-red/20">
+  <section id="education" class="max-w-5xl mx-auto px-4 sm:px-6 py-16 relative z-20">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
       
       <!-- Academic Card -->
-      <div class="reveal">
+      <div class="reveal tilt-card">
+        <div class="card-glare"></div>
         <h2 class="text-xl sm:text-2xl font-heading font-bold tracking-tight mb-4 sm:mb-6 flex items-center gap-2">
           <span>🎓</span><span>Academic Background</span>
         </h2>
         <div class="p-5 sm:p-6 rounded-2xl bg-spider-card border border-spider-red/25 hover:border-spider-red/50 transition">
-          <span class="text-xs font-mono text-spider-red">2023 – 2027 (Expected)</span>
+          <span class="text-xs font-mono text-spider-red font-medium">2023 – 2027 (Expected)</span>
           <h3 class="text-base sm:text-lg font-bold text-white mt-1">Alexandria University</h3>
           <p class="text-sm text-zinc-300">Bachelor of Computer and Data Science</p>
-          <div class="mt-3 inline-block px-3 py-1 rounded-md bg-spider-red/10 border border-spider-red/30 text-xs font-mono text-red-300">
+          <div class="mt-3 inline-block px-3 py-1 rounded-md bg-spider-red/10 border border-spider-red/30 text-xs font-mono text-red-300 font-semibold">
             CGPA: 3.15 / 4.00 (Very Good)
           </div>
         </div>
       </div>
 
       <!-- Languages Card -->
-      <div class="reveal reveal-delay-1">
+      <div class="reveal reveal-delay-1 tilt-card">
+        <div class="card-glare"></div>
         <h2 class="text-xl sm:text-2xl font-heading font-bold tracking-tight mb-4 sm:mb-6 flex items-center gap-2">
           <span>🌐</span><span>Communication Protocols</span>
         </h2>
@@ -514,19 +633,22 @@
     </div>
   </section>
 
+  <!-- Section Beam Divider -->
+  <div class="beam-divider max-w-5xl mx-auto"></div>
+
   <!-- Contact Footer -->
-  <footer id="contact" class="max-w-5xl mx-auto px-4 sm:px-6 py-20 border-t border-spider-red/30 text-center relative">
+  <footer id="contact" class="max-w-5xl mx-auto px-4 sm:px-6 py-20 text-center relative z-20">
     <h2 class="reveal reveal-delay-1 text-2xl sm:text-4xl font-heading font-extrabold tracking-tight text-white">Let's build something extraordinary.</h2>
     <p class="reveal reveal-delay-2 text-sm text-zinc-400 mt-2 mb-8">Feel free to reach out for opportunities, internships, or questions.</p>
     
     <div class="reveal reveal-delay-3 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm font-mono">
-      <a href="mailto:seifamrmohsen2005@gmail.com" class="px-4 py-2.5 rounded-xl bg-spider-card border border-spider-red/30 hover:border-spider-red text-zinc-200 transition shadow-sm flex items-center justify-center gap-2">
+      <a href="mailto:seifamrmohsen2005@gmail.com" class="px-4 py-2.5 rounded-xl bg-spider-card border border-spider-red/30 hover:border-spider-red hover:scale-105 text-zinc-200 transition shadow-sm flex items-center justify-center gap-2 duration-200">
         <span>✉️</span><span class="truncate">seifamrmohsen2005@gmail.com</span>
       </a>
-      <a href="tel:+201221915144" class="px-4 py-2.5 rounded-xl bg-spider-card border border-spider-red/30 hover:border-spider-red text-zinc-200 transition shadow-sm flex items-center justify-center gap-2">
+      <a href="tel:+201221915144" class="px-4 py-2.5 rounded-xl bg-spider-card border border-spider-red/30 hover:border-spider-red hover:scale-105 text-zinc-200 transition shadow-sm flex items-center justify-center gap-2 duration-200">
         <span>📞</span><span>+20 122 191 5144</span>
       </a>
-      <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-spider-card border border-spider-cyan/40 hover:border-spider-cyan text-spider-cyan transition flex items-center justify-center gap-2 shadow-sm">
+      <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-spider-card border border-spider-cyan/40 hover:border-spider-cyan hover:scale-105 text-spider-cyan transition flex items-center justify-center gap-2 shadow-sm duration-200">
         <span>🌐</span><span>Seifinity Portfolio ↗</span>
       </a>
       <span class="px-4 py-2.5 rounded-xl bg-spider-card border border-zinc-800 text-zinc-400 flex items-center justify-center gap-2">
@@ -539,7 +661,7 @@
     </p>
   </footer>
 
-  <!-- Interactive JavaScript: Scroll Progress, Scroll Reveal, and Mobile Menu -->
+  <!-- Interactive JavaScript Engine: Particle Web Canvas, Spotlight, 3D Tilt, Scroll Progress, Scroll Reveal, and Mobile Menu -->
   <script>
     // 1. Scroll Progress Bar
     window.addEventListener('scroll', () => {
@@ -553,8 +675,8 @@
     const revealElements = document.querySelectorAll('.reveal');
     const observerOptions = {
       root: null,
-      threshold: 0.1,
-      rootMargin: "0px 0px -40px 0px"
+      threshold: 0.08,
+      rootMargin: "0px 0px -30px 0px"
     };
 
     const revealObserver = new IntersectionObserver((entries) => {
@@ -567,7 +689,127 @@
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // 3. Mobile Hamburger Menu Toggle with Soft Animation
+    // 3. Desktop Spotlight Cursor Follower
+    const cursorGlow = document.getElementById('cursor-glow');
+    if (cursorGlow && window.innerWidth >= 768) {
+      window.addEventListener('mousemove', (e) => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+      });
+    }
+
+    // 4. Interactive 3D Card Tilt with Dynamic Glare
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 768) return;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        
+        const glare = card.querySelector('.card-glare');
+        if (glare) {
+          glare.style.opacity = '1';
+          glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.06) 0%, transparent 60%)`;
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        const glare = card.querySelector('.card-glare');
+        if (glare) glare.style.opacity = '0';
+      });
+    });
+
+    // 5. Interactive Spider-Web Particle Canvas Engine
+    const canvas = document.getElementById('web-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const mouse = { x: -1000, y: -1000, radius: 130 };
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      window.addEventListener('mouseleave', () => {
+        mouse.x = -1000;
+        mouse.y = -1000;
+      });
+
+      const particleCount = window.innerWidth < 768 ? 20 : 42;
+      const particles = [];
+      const colors = ['rgba(255,23,68,', 'rgba(0,240,255,', 'rgba(225,29,72,'];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.55,
+          vy: (Math.random() - 0.5) * 0.55,
+          radius: Math.random() * 1.6 + 0.8,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+
+      function animateCanvas() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          // Mouse spring tension
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.radius) {
+            p.x -= (dx / dist) * 1.1;
+            p.y -= (dy / dist) * 1.1;
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color + '0.8)';
+          ctx.fill();
+
+          // Connect subtle spider web threads
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dist2 = Math.hypot(p.x - p2.x, p.y - p2.y);
+            if (dist2 < 115) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              const alpha = (1 - dist2 / 115) * 0.16;
+              ctx.strokeStyle = `rgba(255, 23, 68, ${alpha})`;
+              ctx.lineWidth = 0.65;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animateCanvas);
+      }
+      animateCanvas();
+    }
+
+    // 6. Mobile Hamburger Menu Toggle with Soft Animation
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
