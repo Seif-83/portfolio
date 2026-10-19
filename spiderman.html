@@ -116,6 +116,75 @@
     .animate-float {
       animation: subtleFloat 5s infinite ease-in-out;
     }
+
+    /* Mobile Menu & Button Soft Animations */
+    .mobile-menu-btn {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-menu-btn:active {
+      transform: scale(0.9);
+    }
+    .mobile-menu-btn.active {
+      border-color: #ff1744;
+      box-shadow: 0 0 15px rgba(255, 23, 68, 0.35);
+    }
+    
+    /* 3-bar morphing hamburger into red X */
+    .bar {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.25s ease,
+                  background-color 0.3s ease;
+      transform-origin: center;
+    }
+    .mobile-menu-btn.active .bar-top {
+      transform: translateY(6px) rotate(45deg);
+      background-color: #ff1744;
+    }
+    .mobile-menu-btn.active .bar-middle {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .mobile-menu-btn.active .bar-bottom {
+      transform: translateY(-6px) rotate(-45deg);
+      background-color: #ff1744;
+    }
+
+    /* Mobile Dropdown Smooth Grid Slide & Fade */
+    #mobile-menu {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      border-bottom-color: transparent;
+      transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.3s ease;
+    }
+    #mobile-menu.menu-open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      border-bottom-color: rgba(255, 23, 68, 0.25);
+    }
+    #mobile-menu > div {
+      overflow: hidden;
+    }
+
+    /* Soft staggered entrance for mobile menu items */
+    .mobile-link {
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #mobile-menu.menu-open .mobile-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #mobile-menu.menu-open .mobile-link:nth-child(1) { transition-delay: 50ms; }
+    #mobile-menu.menu-open .mobile-link:nth-child(2) { transition-delay: 100ms; }
+    #mobile-menu.menu-open .mobile-link:nth-child(3) { transition-delay: 150ms; }
+    #mobile-menu.menu-open .mobile-link:nth-child(4) { transition-delay: 200ms; }
+    #mobile-menu.menu-open .mobile-link:nth-child(5) { transition-delay: 250ms; }
+    #mobile-menu.menu-open .mobile-link:nth-child(6) { transition-delay: 300ms; }
   </style>
 </head>
 <body class="text-zinc-100 font-sans antialiased selection:bg-spider-red selection:text-white relative">
@@ -174,31 +243,32 @@
         <a href="#contact" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-spider-red to-red-700 hover:from-red-600 hover:to-red-800 text-white font-medium transition shadow-lg shadow-spider-red/30">Get in Touch</a>
       </div>
 
-      <!-- Mobile Hamburger Button -->
-      <button id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-xl bg-zinc-900 border border-spider-red/30 text-zinc-300 hover:text-white hover:border-spider-red focus:outline-none transition">
-        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
+      <!-- Mobile Hamburger Button with Soft Morph -->
+      <button id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" class="mobile-menu-btn md:hidden w-10 h-10 rounded-xl bg-zinc-900 border border-spider-red/30 text-zinc-300 hover:text-white hover:border-spider-red focus:outline-none flex flex-col items-center justify-center gap-[4px] cursor-pointer">
+        <span class="bar bar-top w-5 h-0.5 bg-zinc-300 rounded-full"></span>
+        <span class="bar bar-middle w-5 h-0.5 bg-zinc-300 rounded-full"></span>
+        <span class="bar bar-bottom w-5 h-0.5 bg-zinc-300 rounded-full"></span>
       </button>
 
     </div>
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden md:hidden px-4 pt-3 pb-6 border-b border-spider-red/20 bg-spider-black/95 backdrop-blur-2xl space-y-3 font-mono text-sm">
-      <a href="#about" class="block px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-900 hover:text-spider-cyan transition">about</a>
-      <a href="#skills" class="block px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-900 hover:text-spider-cyan transition">skills</a>
-      <a href="#projects" class="block px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-900 hover:text-spider-cyan transition">projects</a>
-      <a href="#education" class="block px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-900 hover:text-spider-cyan transition">education</a>
-      <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg text-spider-cyan hover:bg-zinc-900 transition border border-spider-cyan/20">
-        <span>Seifinity Showcase</span>
-        <span>↗</span>
-      </a>
-      <a href="#contact" class="block w-full text-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-spider-red to-red-700 text-white font-medium shadow-md shadow-spider-red/30">
-        Get in Touch
-      </a>
+    <!-- Mobile Dropdown Menu with Soft Animation -->
+    <div id="mobile-menu" class="md:hidden border-b bg-spider-black/95 backdrop-blur-2xl">
+      <div>
+        <div class="px-4 pt-3 pb-6 space-y-2 font-mono text-sm">
+          <a href="#about" class="mobile-link block px-3 py-2.5 rounded-lg text-zinc-300 hover:bg-zinc-900 hover:text-spider-cyan transition">about</a>
+          <a href="#skills" class="mobile-link block px-3 py-2.5 rounded-lg text-zinc-300 hover:bg-zinc-900 hover:text-spider-cyan transition">skills</a>
+          <a href="#projects" class="mobile-link block px-3 py-2.5 rounded-lg text-zinc-300 hover:bg-zinc-900 hover:text-spider-cyan transition">projects</a>
+          <a href="#education" class="mobile-link block px-3 py-2.5 rounded-lg text-zinc-300 hover:bg-zinc-900 hover:text-spider-cyan transition">education</a>
+          <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-link flex items-center justify-between px-3 py-2.5 rounded-lg text-spider-cyan hover:bg-zinc-900 transition border border-spider-cyan/20">
+            <span>Seifinity Showcase</span>
+            <span>↗</span>
+          </a>
+          <a href="#contact" class="mobile-link block w-full text-center px-4 py-2.5 mt-2 rounded-xl bg-gradient-to-r from-spider-red to-red-700 text-white font-medium shadow-md shadow-spider-red/30">
+            Get in Touch
+          </a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -514,32 +584,30 @@
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // 3. Mobile Hamburger Menu Toggle
+    // 3. Mobile Hamburger Menu Toggle with Soft Animation
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const closeIcon = document.getElementById('close-icon');
 
     if (mobileBtn && mobileMenu) {
       mobileBtn.addEventListener('click', () => {
-        const isOpen = !mobileMenu.classList.contains('hidden');
+        const isOpen = mobileMenu.classList.contains('menu-open');
         if (isOpen) {
-          mobileMenu.classList.add('hidden');
-          hamburgerIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
+          mobileMenu.classList.remove('menu-open');
+          mobileBtn.classList.remove('active');
+          mobileBtn.setAttribute('aria-expanded', 'false');
         } else {
-          mobileMenu.classList.remove('hidden');
-          hamburgerIcon.classList.add('hidden');
-          closeIcon.classList.remove('hidden');
+          mobileMenu.classList.add('menu-open');
+          mobileBtn.classList.add('active');
+          mobileBtn.setAttribute('aria-expanded', 'true');
         }
       });
 
-      // Auto close when any link is clicked
+      // Auto close smoothly when any link is clicked
       mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          hamburgerIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
+          mobileMenu.classList.remove('menu-open');
+          mobileBtn.classList.remove('active');
+          mobileBtn.setAttribute('aria-expanded', 'false');
         });
       });
     }
