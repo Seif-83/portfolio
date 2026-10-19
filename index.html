@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seif Amr | Full-Stack Web Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800/80">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="font-bold text-lg tracking-tight hover:text-blue-400 transition">Seif Amr<span class="text-blue-500">.</span></a>
+      <div class="hidden sm:flex items-center gap-6 text-sm text-zinc-400">
+        <a href="#about" class="hover:text-zinc-100 transition">About</a>
+        <a href="#skills" class="hover:text-zinc-100 transition">Skills</a>
+        <a href="#projects" class="hover:text-zinc-100 transition">Projects</a>
+        <a href="#education" class="hover:text-zinc-100 transition">Education</a>
+        <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition inline-flex items-center gap-1 text-zinc-300">
+          <span>Seifinity</span>
+          <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </a>
+        <a href="#contact" class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition">Get in Touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="about" class="max-w-5xl mx-auto px-6 pt-24 pb-16">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/60 text-xs text-blue-400 font-mono mb-6">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      Available for Internships & Entry-Level Roles
+    </div>
+    <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-zinc-100 max-w-3xl leading-[1.15]">
+      Building modern, robust web apps & scalable REST APIs.
+    </h1>
+    <p class="mt-6 text-lg text-zinc-400 max-w-2xl leading-relaxed">
+      I’m <span class="text-zinc-100 font-medium">Seif Amr</span>, a Computer & Data Science student at Alexandria University. I focus on end-to-end full-stack web development using React, Node.js, and modern database architectures.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="#projects" class="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition">View Projects</a>
+      <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-lg border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 text-zinc-300 font-medium transition inline-flex items-center gap-2">
+        <span>Seifinity Showcase</span>
+        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+      </a>
+      <a href="#contact" class="px-5 py-2.5 rounded-lg border border-zinc-800 hover:bg-zinc-900 text-zinc-300 font-medium transition">Contact Me</a>
+    </div>
+  </section>
+
+  <!-- Bento Skills Section -->
+  <section id="skills" class="max-w-5xl mx-auto px-6 py-16 border-t border-zinc-900">
+    <h2 class="text-2xl font-bold tracking-tight mb-2">Technical Skills</h2>
+    <p class="text-sm text-zinc-400 mb-8">Technologies, frameworks, and tools I use to build software.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Front-End -->
+      <div class="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80">
+        <h3 class="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider">Front-End</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">React</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">TypeScript</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">JavaScript</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">HTML5 / CSS3</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">UI/UX Design</span>
+        </div>
+      </div>
+
+      <!-- Back-End -->
+      <div class="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80">
+        <h3 class="text-sm font-mono text-emerald-400 mb-3 uppercase tracking-wider">Back-End & APIs</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Node.js</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Express.js</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">RESTful APIs</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">CRUD Operations</span>
+        </div>
+      </div>
+
+      <!-- Databases (Supabase Included) -->
+      <div class="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80">
+        <h3 class="text-sm font-mono text-purple-400 mb-3 uppercase tracking-wider">Databases</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Supabase</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">MongoDB</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Firebase</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">ERD Modeling</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Relational Design</span>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80">
+        <h3 class="text-sm font-mono text-amber-400 mb-3 uppercase tracking-wider">Programming</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Python</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">C++</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Java</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Dart</span>
+        </div>
+      </div>
+
+      <!-- Data (Power BI Removed) -->
+      <div class="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80">
+        <h3 class="text-sm font-mono text-cyan-400 mb-3 uppercase tracking-wider">Data</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Data Analysis</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Data Science</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Excel</span>
+        </div>
+      </div>
+
+      <!-- Tools & Practices -->
+      <div class="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80">
+        <h3 class="text-sm font-mono text-rose-400 mb-3 uppercase tracking-wider">Tools & Clean Code</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">n8n</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Git / GitHub</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Clean Architecture</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Team Collaboration</span>
+        </div>
+      </div>
+
+      <!-- AI & Workflow Automation -->
+      <div class="md:col-span-3 p-6 rounded-2xl bg-gradient-to-r from-violet-950/20 via-zinc-900/40 to-violet-950/20 border border-violet-500/25 relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+          <div class="flex items-center gap-2">
+            <h3 class="text-sm font-mono text-violet-400 uppercase tracking-wider">AI & Workflow Automation</h3>
+          </div>
+          <span class="text-xs text-zinc-400 font-mono">Autonomous Workflows & Smart Integrations</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 text-xs rounded-md bg-violet-500/20 text-violet-200 border border-violet-500/40 font-medium">AI Automation using n8n</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">n8n Workflows</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">LLM & AI Agent Chaining</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Webhooks & API Integrations</span>
+          <span class="px-2.5 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300">Process Automation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="max-w-5xl mx-auto px-6 py-16 border-t border-zinc-900">
+    <h2 class="text-2xl font-bold tracking-tight mb-2">Projects & Portfolio</h2>
+    <p class="text-sm text-zinc-400 mb-8">Recent full-stack and API development work.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Project 1 -->
+      <div class="group p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono text-blue-400">Featured Showcase</span>
+            <span class="text-xs text-zinc-500">Brand Portfolio</span>
+          </div>
+          <h3 class="text-lg font-semibold text-zinc-100 group-hover:text-blue-400 transition">
+            <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:underline">
+              Seifinity — Web Dev Portfolio
+              <svg class="w-4 h-4 opacity-75 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+          </h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            Personal brand showcase featuring full-stack projects, UI/UX implementations, and practical web applications.
+          </p>
+          <div class="mt-4">
+            <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600/10 border border-blue-500/20 text-xs font-medium text-blue-400 hover:bg-blue-600/20 hover:border-blue-500/40 transition">
+              <span>Visit Live Demo</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2 pt-4 border-t border-zinc-800/60">
+          <span class="text-xs font-mono text-zinc-400">React</span> •
+          <span class="text-xs font-mono text-zinc-400">TypeScript</span> •
+          <span class="text-xs font-mono text-zinc-400">Tailwind</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono text-emerald-400">Full-Stack Application</span>
+            <span class="text-xs text-zinc-500">Interactive App</span>
+          </div>
+          <h3 class="text-lg font-semibold text-zinc-100">Responsive Full-Stack Web App</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            Responsive client-side interface built with React, paired with an Express/Node backend supporting full CRUD workflows and database persistence.
+          </p>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2 pt-4 border-t border-zinc-800/60">
+          <span class="text-xs font-mono text-zinc-400">Node.js</span> •
+          <span class="text-xs font-mono text-zinc-400">Express</span> •
+          <span class="text-xs font-mono text-zinc-400">MongoDB / Supabase</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Experience -->
+  <section id="education" class="max-w-5xl mx-auto px-6 py-16 border-t border-zinc-900">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h2 class="text-xl font-bold tracking-tight mb-6">Education</h2>
+        <div class="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800">
+          <span class="text-xs font-mono text-blue-400">2023 – 2027 (Expected)</span>
+          <h3 class="text-base font-semibold mt-1">Alexandria University</h3>
+          <p class="text-sm text-zinc-400">Bachelor of Computer and Data Science</p>
+          <p class="text-xs font-mono text-zinc-500 mt-2">CGPA: 3.15 / 4.00 (Very Good)</p>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold tracking-tight mb-6">Languages</h2>
+        <div class="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800 space-y-4">
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-medium">Arabic</span>
+            <span class="text-xs font-mono text-zinc-400">Native</span>
+          </div>
+          <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-blue-500 h-full w-full"></div>
+          </div>
+          <div class="flex justify-between items-center pt-2">
+            <span class="text-sm font-medium">English</span>
+            <span class="text-xs font-mono text-zinc-400">Advanced</span>
+          </div>
+          <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-blue-500 h-full w-4/5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer id="contact" class="max-w-5xl mx-auto px-6 py-20 border-t border-zinc-900 text-center">
+    <h2 class="text-3xl font-bold tracking-tight">Let's build something together.</h2>
+    <p class="text-sm text-zinc-400 mt-2 mb-8">Feel free to reach out for opportunities, internships, or questions.</p>
+    
+    <div class="flex flex-wrap justify-center gap-4 text-sm font-mono">
+      <a href="mailto:seifamrmohsen2005@gmail.com" class="px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 transition">
+        ✉️ seifamrmohsen2005@gmail.com
+      </a>
+      <a href="tel:+201221915144" class="px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 transition">
+        📞 +20 122 191 5144
+      </a>
+      <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-zinc-900 border border-blue-500/30 hover:border-blue-500/60 text-blue-400 hover:text-blue-300 transition inline-flex items-center gap-2">
+        🌐 Seifinity Portfolio ↗
+      </a>
+      <span class="px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400">
+        📍 Alexandria, Egypt
+      </span>
+    </div>
+    <p class="text-xs text-zinc-600 mt-12">© 2026 Seif Amr. <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-400 transition underline underline-offset-2">Seifinity Showcase</a>.</p>
+  </footer>
+
+</body>
+</html>
