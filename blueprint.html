@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seif Amr | Software Architect &amp; Full-Stack Developer (Hairline Blueprint Edition)</title>
+  <meta name="description" content="Technical engineering portfolio designed with interactive isometric line drawings that answer the pointer. Built by Seif Amr." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans, JetBrains Mono, Newsreader (Serif Accent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500;1,6..72,600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blueprint: {
+              void: '#0a0c10',
+              base: '#0e1117',
+              plate: '#131720',
+              hover: '#191f2c',
+              border: 'rgba(255, 255, 255, 0.08)',
+              borderFocus: 'rgba(56, 189, 248, 0.4)',
+              line: 'rgba(255, 255, 255, 0.12)',
+              ink: '#f3f4f6',
+              muted: '#8b949e',
+              faint: '#4b5563',
+              cyan: '#38bdf8',
+              emerald: '#34d399'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Newsreader', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       HAIRLINE BLUEPRINT DESIGN SYSTEM & ISOMETRIC CANVAS
+       ========================================================================== */
+    :root {
+      --hairline-plate: #0e1117;
+      --hairline-hi: #ffffff;
+      --hairline-edge: #94a3b8;
+      --hairline-mid: #475569;
+      --hairline-lo: #1e293b;
+      --hairline-stroke: 0.95;
+    }
+
+    body {
+      background-color: #0e1117;
+      color: #f3f4f6;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    /* Precision Blueprint Hairline Card */
+    .blueprint-card {
+      background-color: #131720;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .blueprint-card:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.05);
+    }
+
+    /* Hairline Isometric Figure Containers */
+    .hairline-hero-figure {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 5/4;
+      margin: 0 auto;
+      cursor: crosshair;
+    }
+    .hairline-hero-figure svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.08));
+    }
+
+    .hairline-bento-figure {
+      width: 100%;
+      max-width: 220px;
+      aspect-ratio: 5/4;
+      margin: 0 auto;
+      cursor: crosshair;
+    }
+    .hairline-bento-figure svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Hero Staggered Rise */
+    .hero-rise > * {
+      opacity: 0;
+      animation: rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: calc(var(--i, 0) * 90ms);
+    }
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hairline CLI Install Pill */
+    .pill-cli {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      background: #141923;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      transition: all 0.2s ease;
+    }
+    .pill-cli:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+    }
+
+    /* Figure Switcher Tabs */
+    .fig-tab {
+      transition: all 0.2s ease;
+    }
+    .fig-tab.active {
+      background: #1e2638;
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+    }
+
+    /* Copy Success State */
+    .copy-success {
+      background: rgba(52, 211, 153, 0.15) !important;
+      color: #34d399 !important;
+      border-color: rgba(52, 211, 153, 0.4) !important;
+    }
+  </style>
+</head>
+
+<body class="selection:bg-blueprint-cyan/30 selection:text-white font-sans antialiased min-h-screen relative pb-28">
+
+  <!-- ==========================================================================
+       TOP NAVIGATION BAR (Hairline Minimalist Style)
+       ========================================================================== -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-blueprint-base/85 border-b border-blueprint-border">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-baseline gap-2.5">
+        <a href="blueprint.html" class="font-mono text-base font-bold tracking-tight text-white flex items-center gap-2 group">
+          <span class="w-2.5 h-2.5 rounded-sm bg-blueprint-cyan rotate-45 group-hover:rotate-90 transition-transform duration-300"></span>
+          <span>seif.amr</span>
+        </a>
+        <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-white/[0.05] border border-white/10 text-blueprint-muted">
+          v2.4.0
+        </span>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-mono text-blueprint-muted">
+        <a href="#hero" class="hover:text-blueprint-ink transition">Overview</a>
+        <a href="#schematics" class="hover:text-blueprint-ink transition">Schematics</a>
+        <a href="#arsenal" class="hover:text-blueprint-ink transition">Arsenal</a>
+        <a href="#projects" class="hover:text-blueprint-ink transition">Projects</a>
+        <a href="#education" class="hover:text-blueprint-ink transition">Academic</a>
+        <a href="https://github.com/Seif-83" target="_blank" rel="noopener noreferrer" class="hover:text-blueprint-cyan transition flex items-center gap-1">
+          <span>GitHub</span>
+          <span class="text-[10px]">↗</span>
+        </a>
+      </nav>
+
+      <!-- Action -->
+      <div class="flex items-center gap-3 font-mono text-xs">
+        <a href="#contact" class="px-4 py-2 rounded-xl bg-white text-blueprint-void font-bold hover:bg-blueprint-cyan transition shadow-sm hover:scale-105 active:scale-95 duration-200">
+          Transmission
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION: THE ISOMETRIC SCHEMATIC THAT ANSWERS THE POINTER
+       ========================================================================== -->
+  <main id="hero" class="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-16">
+    
+    <section class="hero-rise grid grid-cols-1 justify-items-center text-center">
+      
+      <!-- Micro Status Badge -->
+      <div style="--i:0" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blueprint-border bg-blueprint-plate text-xs font-mono text-blueprint-cyan mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-blueprint-cyan animate-pulse"></span>
+        <span>Computer &amp; Data Science &bull; Alexandria University</span>
+      </div>
+
+      <!-- Headline with Hairline Typography (Serif Italic Contrast) -->
+      <h1 style="--i:1" class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white max-w-4xl leading-[1.12]">
+        Software architectures that <em class="font-serif italic font-normal text-blueprint-cyan">answer</em> the pointer.
+      </h1>
+
+      <p style="--i:2" class="mt-5 sm:mt-6 text-base sm:text-lg text-blueprint-muted max-w-2xl leading-relaxed">
+        Full-stack web developer building high-throughput React &amp; Node systems, and autonomous multi-agent AI pipelines using n8n.
+      </p>
+
+      <!-- Tactical Install / Inspection CLI Pill -->
+      <div style="--i:3" class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <div class="pill-cli group">
+          <span class="text-blueprint-faint select-none">$</span>
+          <span class="text-blueprint-muted">npx</span>
+          <code class="text-blueprint-ink font-semibold">seif-amr</code>
+          <button type="button" onclick="copyCliCommand('npx seif-amr', this)" class="ml-1 p-1 rounded hover:bg-white/10 text-blueprint-muted hover:text-white transition" title="Copy CLI Command">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          </button>
+        </div>
+
+        <a href="#projects" class="px-5 py-2.5 rounded-full border border-white/10 hover:border-blueprint-cyan/50 text-xs font-mono text-zinc-300 hover:text-white hover:bg-white/[0.04] transition">
+          View Projects &darr;
+        </a>
+      </div>
+
+      <!-- Interactive Isometric Centerpiece (Hairline Figures) -->
+      <div style="--i:4" class="w-full max-w-2xl mt-12 blueprint-card p-6 sm:p-8 rounded-3xl relative overflow-hidden">
+        
+        <!-- Controls & Telemetry -->
+        <div class="flex flex-col sm:flex-row items-center justify-between pb-4 mb-4 border-b border-blueprint-border text-xs font-mono gap-3">
+          <div class="flex items-center gap-2 text-blueprint-muted">
+            <span class="w-2 h-2 rounded-full bg-blueprint-emerald"></span>
+            <span class="text-[11px] uppercase tracking-wider text-white font-semibold">ISOMETRIC SCHEMATIC VIEWER</span>
+          </div>
+
+          <!-- Switcher Buttons -->
+          <div class="flex items-center gap-1 bg-blueprint-void/80 p-1 rounded-xl border border-white/[0.06]">
+            <button type="button" onclick="loadHeroFigure('exploded', this)" class="fig-tab active px-3 py-1 rounded-lg text-[11px] font-mono border border-transparent">
+              ◈ Exploded
+            </button>
+            <button type="button" onclick="loadHeroFigure('terrain', this)" class="fig-tab px-3 py-1 rounded-lg text-[11px] font-mono text-blueprint-muted hover:text-white border border-transparent">
+              ☵ Terrain
+            </button>
+            <button type="button" onclick="loadHeroFigure('keyboard', this)" class="fig-tab px-3 py-1 rounded-lg text-[11px] font-mono text-blueprint-muted hover:text-white border border-transparent">
+              ⌨ Keyboard
+            </button>
+            <button type="button" onclick="loadHeroFigure('turntable', this)" class="fig-tab px-3 py-1 rounded-lg text-[11px] font-mono text-blueprint-muted hover:text-white border border-transparent">
+              ◎ Turntable
+            </button>
+          </div>
+        </div>
+
+        <!-- The Isometric Canvas -->
+        <div class="py-2 flex flex-col items-center justify-center">
+          <div id="hero-isometric-stage" class="hairline-hero-figure"></div>
+          
+          <div id="hero-figure-caption" class="text-center mt-3 text-xs font-mono text-blueprint-muted">
+            <span class="text-blueprint-cyan">&bull; Pointer Active:</span> An app window taken apart into four system layers.
+          </div>
+        </div>
+
+        <!-- Telemetry Metrics Bar -->
+        <div class="mt-6 pt-4 border-t border-blueprint-border grid grid-cols-2 sm:grid-cols-4 gap-3 text-left font-mono text-xs">
+          <div>
+            <div class="text-[10px] text-blueprint-faint">CGPA</div>
+            <div class="text-sm font-bold text-white mt-0.5">3.15 / 4.0</div>
+          </div>
+          <div>
+            <div class="text-[10px] text-blueprint-faint">ENGINE</div>
+            <div class="text-sm font-bold text-blueprint-cyan mt-0.5">Hairline 0.5.1</div>
+          </div>
+          <div>
+            <div class="text-[10px] text-blueprint-faint">STACK</div>
+            <div class="text-sm font-bold text-white mt-0.5">React &bull; Node</div>
+          </div>
+          <div>
+            <div class="text-[10px] text-blueprint-faint">AUTOMATION</div>
+            <div class="text-sm font-bold text-blueprint-emerald mt-0.5">n8n Flows</div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         BENTO SCHEMATICS ARSENAL
+         ========================================================================== -->
+    <section id="arsenal" class="pt-24 pb-16">
+      
+      <div class="mb-10 text-center sm:text-left">
+        <div class="text-xs font-mono text-blueprint-cyan tracking-widest uppercase mb-1">01 &bull; ENGINEERING SCHEMATICS</div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+          System Components &amp; Arsenal
+        </h2>
+        <p class="text-sm text-blueprint-muted mt-2 max-w-xl">
+          Every layer of the full-stack pipeline visualized as a responsive isometric schematic.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Bento 1: Client Systems -->
+        <div class="blueprint-card p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-blueprint-muted mb-3">
+              <span class="text-white font-bold">CLIENT INTERFACES</span>
+              <span>01</span>
+            </div>
+            <p class="text-xs text-blueprint-muted leading-relaxed">Component-driven reactive UIs, fluid state handling, and accessible modern standards.</p>
+          </div>
+          <div class="my-4">
+            <div id="figure-bento-client" class="hairline-bento-figure"></div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-blueprint-border text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-blueprint-cyan">React</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-zinc-300">TypeScript</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-zinc-300">Tailwind</span>
+          </div>
+        </div>
+
+        <!-- Bento 2: Server Blades & APIs -->
+        <div class="blueprint-card p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-blueprint-muted mb-3">
+              <span class="text-white font-bold">SERVERS &amp; APIS</span>
+              <span>02</span>
+            </div>
+            <p class="text-xs text-blueprint-muted leading-relaxed">Server racks, REST routing, authentication gates, and high-throughput controllers.</p>
+          </div>
+          <div class="my-4">
+            <div id="figure-bento-server" class="hairline-bento-figure"></div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-blueprint-border text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-blueprint-cyan">Node.js</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-zinc-300">Express</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-zinc-300">REST APIs</span>
+          </div>
+        </div>
+
+        <!-- Bento 3: Data Schemas & Storage -->
+        <div class="blueprint-card p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-blueprint-muted mb-3">
+              <span class="text-white font-bold">DATA &amp; SCHEMAS</span>
+              <span>03</span>
+            </div>
+            <p class="text-xs text-blueprint-muted leading-relaxed">Relational schemas, NoSQL document collections, persistent queries, and ERD structures.</p>
+          </div>
+          <div class="my-4">
+            <div id="figure-bento-data" class="hairline-bento-figure"></div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-blueprint-border text-[11px] font-mono">
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-blueprint-cyan">Supabase</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-zinc-300">MongoDB</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] text-zinc-300">Firebase</span>
+          </div>
+        </div>
+
+        <!-- FLAGSHIP BENTO: n8n AI Automation -->
+        <div class="md:col-span-3 blueprint-card p-7 sm:p-8 rounded-3xl relative overflow-hidden">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div class="max-w-xl">
+              <div class="flex items-center gap-2 text-xs font-mono text-blueprint-emerald uppercase tracking-wider mb-2">
+                <span class="w-2 h-2 rounded-full bg-blueprint-emerald animate-ping"></span>
+                <span>AUTONOMOUS PIPELINES &bull; FLAGSHIP CAPABILITY</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+                AI &amp; Workflow Automation using n8n
+              </h3>
+              <p class="text-sm text-blueprint-muted mt-3 leading-relaxed">
+                Architecting intelligent automation systems that orchestrate LLMs, webhooks, databases, and multi-step worker nodes. Turning complex manual operations into autonomous, zero-friction pipelines.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-5 text-xs font-mono">
+                <span class="px-3 py-1.5 rounded-lg bg-blueprint-cyan/15 text-blueprint-cyan border border-blueprint-cyan/30">n8n Node Chains</span>
+                <span class="px-3 py-1.5 rounded-lg bg-white/[0.05] text-zinc-300 border border-white/10">LLM Agent Routing</span>
+                <span class="px-3 py-1.5 rounded-lg bg-white/[0.05] text-zinc-300 border border-white/10">Webhook Triggers</span>
+                <span class="px-3 py-1.5 rounded-lg bg-white/[0.05] text-zinc-300 border border-white/10">Data Sync</span>
+              </div>
+            </div>
+
+            <!-- Live Branches Tree Figure -->
+            <div class="w-full lg:w-80 p-4 rounded-2xl bg-blueprint-void border border-white/[0.07] flex flex-col items-center">
+              <div class="w-full flex items-center justify-between text-[11px] font-mono text-blueprint-muted mb-2">
+                <span>COMMIT &amp; ROUTE TREE</span>
+                <span class="text-blueprint-cyan">&bull; REACTIVE</span>
+              </div>
+              <div id="figure-bento-n8n" class="hairline-bento-figure" style="max-width: 240px;"></div>
+              <div class="text-[10px] font-mono text-blueprint-faint mt-2 text-center">Pointer lifts node commit history</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         PROJECTS SECTION
+         ========================================================================== -->
+    <section id="projects" class="pt-20 pb-16">
+      
+      <div class="mb-10 text-center sm:text-left">
+        <div class="text-xs font-mono text-blueprint-cyan tracking-widest uppercase mb-1">02 &bull; PRODUCTION WORK</div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+          Deployed Systems &amp; Experiments
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Project 1: Seifinity -->
+        <div class="blueprint-card p-7 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-blueprint-border text-xs font-mono text-blueprint-muted">
+              <span>seifinity-portfolio.vercel.app</span>
+              <span class="px-2 py-0.5 rounded bg-blueprint-cyan/15 text-blueprint-cyan font-bold">FLAGSHIP</span>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white hover:text-blueprint-cyan transition">
+              <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2">
+                <span>Seifinity — Web Dev Portfolio</span>
+                <span>↗</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-blueprint-muted mt-3 leading-relaxed">
+              Personal digital universe showcasing creative coding experiments, reactive interfaces, and software architectures. Built with TypeScript, React, and deployed on Vercel Edge.
+            </p>
+
+            <!-- Schematic Preview -->
+            <div class="my-5 p-4 rounded-2xl bg-blueprint-void border border-white/[0.06]">
+              <div class="flex items-center justify-between text-[11px] font-mono text-blueprint-muted mb-1">
+                <span>SCHEMATIC: TERMINAL INTERACTION</span>
+                <span class="text-blueprint-cyan text-[10px]">POINTER ANSWER</span>
+              </div>
+              <div id="project-terminal-figure" class="hairline-bento-figure" style="max-width: 230px;"></div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-blueprint-border flex items-center justify-between text-xs font-mono">
+            <span class="text-blueprint-muted">React &bull; TypeScript &bull; Tailwind</span>
+            <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-blueprint-cyan font-semibold flex items-center gap-1">
+              <span>Launch Live Site</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: Full-Stack Web Application -->
+        <div class="blueprint-card p-7 rounded-3xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-blueprint-border text-xs font-mono text-blueprint-muted">
+              <span>api.fullstack.internal</span>
+              <span class="px-2 py-0.5 rounded bg-blueprint-emerald/15 text-blueprint-emerald font-bold">END-TO-END</span>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white hover:text-blueprint-cyan transition">
+              Responsive Full-Stack Web App
+            </h3>
+
+            <p class="text-sm text-blueprint-muted mt-3 leading-relaxed">
+              Complete client-server web architecture with authenticated sessions, RESTful endpoints, persistent schema storage, and dynamic client views.
+            </p>
+
+            <!-- Schematic Preview -->
+            <div class="my-5 p-4 rounded-2xl bg-blueprint-void border border-white/[0.06]">
+              <div class="flex items-center justify-between text-[11px] font-mono text-blueprint-muted mb-1">
+                <span>SCHEMATIC: BLADE REPOSITORIES</span>
+                <span class="text-blueprint-emerald text-[10px]">POINTER ANSWER</span>
+              </div>
+              <div id="project-cabinet-figure" class="hairline-bento-figure" style="max-width: 230px;"></div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-blueprint-border flex items-center justify-between text-xs font-mono">
+            <span class="text-blueprint-muted">Node.js &bull; Express &bull; Supabase</span>
+            <span class="text-blueprint-emerald font-semibold">Production Ready</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         ACADEMIC & BACKGROUND
+         ========================================================================== -->
+    <section id="education" class="pt-16 pb-16">
+      <div class="blueprint-card p-7 sm:p-8 rounded-3xl">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-blueprint-border">
+          <div>
+            <div class="text-xs font-mono text-blueprint-cyan uppercase tracking-widest">ACADEMIC FOUNDATION</div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mt-1">Alexandria University</h3>
+            <p class="text-sm text-blueprint-muted mt-0.5">Faculty of Computer and Data Science (2023 – 2027)</p>
+          </div>
+          <div class="px-4 py-2 rounded-xl bg-blueprint-void border border-blueprint-cyan/30 text-xs font-mono text-blueprint-cyan font-bold">
+            CGPA: 3.15 / 4.00 (Very Good)
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono text-blueprint-muted">
+          <div class="p-4 rounded-xl bg-blueprint-void border border-white/[0.04]">
+            <div class="text-white font-semibold mb-1">Core Foundations</div>
+            <div>Data Structures, Algorithms, OOP, Database Systems.</div>
+          </div>
+          <div class="p-4 rounded-xl bg-blueprint-void border border-white/[0.04]">
+            <div class="text-white font-semibold mb-1">Languages</div>
+            <div>Arabic (Native), English (Professional Working Proficiency).</div>
+          </div>
+          <div class="p-4 rounded-xl bg-blueprint-void border border-white/[0.04]">
+            <div class="text-white font-semibold mb-1">Availability</div>
+            <div>Open for Internships, Software Engineering Roles &amp; Freelance.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TRANSMISSION & CONTACT
+         ========================================================================== -->
+    <footer id="contact" class="pt-16 pb-12 text-center">
+      <div class="text-xs font-mono text-blueprint-cyan tracking-widest uppercase mb-2">03 &bull; TRANSMISSION CHANNEL</div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Let's build something extraordinary.</h2>
+      <p class="text-sm text-blueprint-muted mt-2 max-w-md mx-auto">Direct communication lines are open for technical discussions and engineering opportunities.</p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3 text-xs font-mono">
+        <a href="mailto:seifamrmohsen2005@gmail.com" class="px-5 py-3 rounded-xl blueprint-card text-zinc-200 hover:text-white hover:border-blueprint-cyan transition flex items-center gap-2">
+          <span>✉</span><span>seifamrmohsen2005@gmail.com</span>
+        </a>
+        <a href="tel:+201221915144" class="px-5 py-3 rounded-xl blueprint-card text-zinc-200 hover:text-white hover:border-blueprint-cyan transition flex items-center gap-2">
+          <span>📞</span><span>+20 122 191 5144</span>
+        </a>
+        <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl blueprint-card text-blueprint-cyan hover:border-blueprint-cyan transition flex items-center gap-2">
+          <span>🌐</span><span>Seifinity Showcase ↗</span>
+        </a>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-blueprint-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-blueprint-faint">
+        <div>&copy; 2026 Seif Amr &bull; Hairline Blueprint Edition</div>
+        <div class="italic">"Code drawn with precision."</div>
+        <div>
+          <a href="https://hairline.lucasmarkes.com" target="_blank" rel="noopener noreferrer" class="hover:underline">
+            Inspired by Hairline ↗
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ==========================================================================
+       FLOATING THEME SWITCHER DOCK
+       ========================================================================== -->
+  <aside aria-label="Theme Switcher" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 p-1.5 rounded-full bg-blueprint-plate/95 backdrop-blur-xl border border-blueprint-cyan/40 shadow-2xl text-xs font-mono">
+    <span class="px-2.5 text-blueprint-muted font-semibold hidden sm:inline">Theme:</span>
+    <a href="index.html" class="px-3 py-1.5 rounded-full hover:bg-white/10 text-zinc-400 hover:text-spider-red transition flex items-center gap-1.5 border border-transparent hover:border-red-500/30">
+      <span>🕷️</span><span>Spider</span>
+    </a>
+    <span class="px-3 py-1.5 rounded-full bg-blueprint-cyan/20 text-blueprint-cyan font-semibold border border-blueprint-cyan/50 flex items-center gap-1.5 shadow-sm">
+      <span>📐</span><span>Blueprint</span>
+    </span>
+  </aside>
+
+  <!-- ==========================================================================
+       HAIRLINE ISOMETRIC FIGURES ENGINE SCRIPT (ESM)
+       ========================================================================== -->
+  <script type="module">
+    import { exploded, terrain, keyboard, turntable, branches, cabinet, terminal, sieve, phone } from "https://esm.sh/@lucasmarkes/hairline";
+
+    // 1. Hero Dynamic Figure Switcher
+    let activeHeroFigure = null;
+    const heroStage = document.getElementById('hero-isometric-stage');
+    const heroCaption = document.getElementById('hero-figure-caption');
+
+    const captions = {
+      exploded: '<span class="text-blueprint-cyan">&bull; Pointer Active:</span> An app window taken apart into four system layers.',
+      terrain: '<span class="text-blueprint-cyan">&bull; Pointer Active:</span> Eighty-one pillars on a plinth rising under the cursor.',
+      keyboard: '<span class="text-blueprint-cyan">&bull; Pointer Active:</span> Sixty mechanical keys sinking in wave formation under pointer.',
+      turntable: '<span class="text-blueprint-cyan">&bull; Pointer Active:</span> Blocks on a turntable spinning with flick momentum.'
+    };
+
+    window.loadHeroFigure = function(type, btn) {
+      document.querySelectorAll('.fig-tab').forEach(t => t.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (activeHeroFigure) {
+        activeHeroFigure.destroy();
+        activeHeroFigure = null;
+      }
+      if (heroStage) {
+        heroStage.innerHTML = '';
+        if (type === 'exploded') {
+          activeHeroFigure = exploded(heroStage, { intensity: 0.85, theme: 'dark', play: true });
+        } else if (type === 'terrain') {
+          activeHeroFigure = terrain(heroStage, { intensity: 0.85, theme: 'dark', play: true });
+        } else if (type === 'keyboard') {
+          activeHeroFigure = keyboard(heroStage, { intensity: 0.85, theme: 'dark', play: true });
+        } else if (type === 'turntable') {
+          activeHeroFigure = turntable(heroStage, { intensity: 0.85, theme: 'dark', play: true });
+        }
+      }
+      if (heroCaption && captions[type]) {
+        heroCaption.innerHTML = captions[type];
+      }
+    };
+
+    // Mount initial Hero figure
+    if (heroStage) {
+      activeHeroFigure = exploded(heroStage, { intensity: 0.85, theme: 'dark', play: true });
+    }
+
+    // 2. Bento Figures
+    const bentoClient = document.getElementById('figure-bento-client');
+    if (bentoClient) phone(bentoClient, { intensity: 0.75, theme: 'dark', play: true });
+
+    const bentoServer = document.getElementById('figure-bento-server');
+    if (bentoServer) cabinet(bentoServer, { intensity: 0.75, theme: 'dark', play: true });
+
+    const bentoData = document.getElementById('figure-bento-data');
+    if (bentoData) sieve(bentoData, { intensity: 0.75, theme: 'dark', play: true });
+
+    const bentoN8n = document.getElementById('figure-bento-n8n');
+    if (bentoN8n) branches(bentoN8n, { intensity: 0.8, theme: 'dark', play: true });
+
+    // 3. Project Figures
+    const projTerminal = document.getElementById('project-terminal-figure');
+    if (projTerminal) terminal(projTerminal, { intensity: 0.75, theme: 'dark', play: true });
+
+    const projCabinet = document.getElementById('project-cabinet-figure');
+    if (projCabinet) cabinet(projCabinet, { intensity: 0.75, theme: 'dark', play: true });
+
+    // 4. Copy CLI Command Helper
+    window.copyCliCommand = function(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = `<svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        btn.classList.add('copy-success');
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copy-success');
+        }, 2200);
+      });
+    };
+  </script>
+
+</body>
+</html>

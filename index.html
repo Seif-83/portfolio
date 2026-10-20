@@ -318,6 +318,59 @@
     .corner-web-svg:hover {
       opacity: 0.35;
     }
+
+    /* Hairline Isometric Custom Styling & HUD Controls */
+    .hairline-hud-stage {
+      --hairline-plate: #0b0f19;
+      --hairline-hi: #ff1e42;
+      --hairline-edge: #00f0ff;
+      --hairline-mid: #38bdf8;
+      --hairline-lo: rgba(255, 255, 255, 0.12);
+      --hairline-stroke: 1.0;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 5/4;
+      margin: 0 auto;
+      cursor: crosshair;
+    }
+    .hairline-hud-stage svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 0 16px rgba(0, 240, 255, 0.15));
+    }
+    .hairline-card-stage {
+      --hairline-plate: #090c14;
+      --hairline-hi: #00f0ff;
+      --hairline-edge: #ff1e42;
+      --hairline-mid: #67e8f9;
+      --hairline-lo: rgba(255, 255, 255, 0.1);
+      --hairline-stroke: 0.95;
+      width: 100%;
+      max-width: 260px;
+      aspect-ratio: 5/4;
+      margin: 0 auto;
+      cursor: crosshair;
+    }
+    .hairline-card-stage svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .hud-tab-btn {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hud-tab-btn.active {
+      background: rgba(255, 30, 66, 0.2);
+      border-color: rgba(255, 30, 66, 0.6);
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 30, 66, 0.25);
+    }
+    .copy-success {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: rgba(16, 185, 129, 0.5) !important;
+      color: #34d399 !important;
+    }
   </style>
 </head>
 
@@ -474,78 +527,107 @@
           </a>
         </div>
 
+        <!-- Hairline-Style Tactile Terminal Pill -->
+        <div class="reveal reveal-delay-4 mt-5 flex flex-wrap items-center gap-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/60 border border-white/10 hover:border-spider-red/40 transition font-mono text-xs text-zinc-300 shadow-inner group">
+            <span class="text-spider-red font-bold select-none">&gt;</span>
+            <span class="text-zinc-500 select-none">$</span>
+            <code class="text-zinc-200">npx seif-amr</code>
+            <button type="button" onclick="copyCliCommand('npx seif-amr', this)" class="ml-1.5 p-1 rounded-md bg-white/[0.06] hover:bg-spider-red/20 hover:text-white text-zinc-400 transition" title="Copy command">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </div>
+          <span class="text-[11px] font-mono text-zinc-500 hidden sm:inline">&larr; Quick terminal inspection</span>
+        </div>
+
       </div>
 
       <!-- Right Column (5 cols): Spider-Tech Holographic Cyber Suit Centerpiece -->
       <div class="lg:col-span-5 reveal reveal-delay-2 flex justify-center">
         
-        <div class="w-full max-w-md p-6 sm:p-7 rounded-3xl spider-glass-card border border-white/[0.09] shadow-2xl shadow-black/80 relative overflow-hidden group">
+        <div class="w-full max-w-md p-5 sm:p-6 rounded-3xl spider-glass-card border border-white/[0.09] shadow-2xl shadow-black/80 relative overflow-hidden group">
           <div class="card-glare"></div>
           
           <!-- Background Subtle Web Ring Graphic -->
           <div class="absolute -right-16 -top-16 w-52 h-52 rounded-full border border-spider-red/20 opacity-40 pointer-events-none"></div>
           <div class="absolute -right-24 -top-24 w-68 h-68 rounded-full border border-spider-cyan/15 opacity-30 pointer-events-none"></div>
 
-          
+          <!-- Top HUD Header & Interactive Figure Switcher -->
+          <div class="flex items-center justify-between pb-3 border-b border-white/[0.08] text-xs font-mono">
+            <div class="flex items-center gap-1.5 text-zinc-400">
+              <span class="w-2 h-2 rounded-full bg-spider-cyan animate-pulse"></span>
+              <span class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold">ISOMETRIC HUD</span>
+            </div>
+            <div class="flex items-center gap-1 bg-black/60 p-1 rounded-xl border border-white/[0.08]">
+              <button type="button" id="tab-exploded" onclick="switchHudFigure('exploded')" class="hud-tab-btn active px-2.5 py-1 rounded-lg text-[11px] font-mono flex items-center gap-1">
+                <span>◈</span><span>Layers</span>
+              </button>
+              <button type="button" id="tab-terrain" onclick="switchHudFigure('terrain')" class="hud-tab-btn px-2.5 py-1 rounded-lg text-[11px] font-mono text-zinc-400 hover:text-white flex items-center gap-1">
+                <span>☵</span><span>Wave</span>
+              </button>
+              <button type="button" id="tab-mask" onclick="switchHudFigure('mask')" class="hud-tab-btn px-2.5 py-1 rounded-lg text-[11px] font-mono text-zinc-400 hover:text-white flex items-center gap-1">
+                <span>🕷️</span><span>Mask</span>
+              </button>
+            </div>
+          </div>
 
-          <!-- Center: High-Tech Spider Mask Vector Artwork -->
-          <div class="py-6 flex flex-col items-center justify-center relative">
+          <!-- Interactive Stage Container -->
+          <div class="py-4 relative flex flex-col items-center justify-center min-h-[250px]">
             
-           
+            <!-- Hairline Live Interactive Figure Container -->
+            <div id="hud-hairline-container" class="hairline-hud-stage relative z-10">
+              <!-- Live Hairline SVG will be mounted here -->
+            </div>
 
-            <!-- Stylized Spider-Man Mask Emblem -->
-            <div class="w-32 h-32 rounded-3xl bg-gradient-to-br from-spider-red/25 via-zinc-950 to-spider-cyan/15 border border-spider-red/40 flex items-center justify-center shadow-xl shadow-spider-red/30 group-hover:scale-105 group-hover:border-spider-red group-hover:shadow-spider-red/50 transition-all duration-300 relative">
-              
-              <!-- Spider Web Texture Background in Mask -->
-              <svg class="w-20 h-20 text-spider-red drop-shadow-[0_0_12px_rgba(255,30,66,0.8)]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
-                <!-- Faceted Cyber Mask Outline -->
-                <polygon points="50,10 85,25 78,72 50,92 22,72 15,25" stroke="#ff1e42" fill="rgba(255,30,66,0.08)" stroke-width="2.5"/>
-                <!-- Internal Web Strands -->
-                <line x1="50" y1="10" x2="50" y2="92" stroke="rgba(255,30,66,0.35)" stroke-width="1.5"/>
-                <line x1="15" y1="25" x2="85" y2="25" stroke="rgba(255,30,66,0.3)" stroke-width="1.5"/>
-                <line x1="22" y1="72" x2="78" y2="72" stroke="rgba(255,30,66,0.3)" stroke-width="1.5"/>
-                <!-- Angular Glowing Eyes (Spider-Verse / 2099 Style) -->
-                <polygon points="32,38 45,46 36,54 28,45" fill="#00f0ff" stroke="#ffffff" stroke-width="1.5" class="spider-eyes-glow"/>
-                <polygon points="68,38 55,46 64,54 72,45" fill="#00f0ff" stroke="#ffffff" stroke-width="1.5" class="spider-eyes-glow"/>
-              </svg>
-
-              <!-- Live Beacon Dot -->
-              <div class="absolute bottom-2 right-2 flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-spider-cyan opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-spider-cyan"></span>
+            <!-- Stylized Spider-Man Mask Emblem (Shown when Mask tab is active) -->
+            <div id="hud-mask-container" class="hidden flex-col items-center justify-center py-4">
+              <div class="w-32 h-32 rounded-3xl bg-gradient-to-br from-spider-red/25 via-zinc-950 to-spider-cyan/15 border border-spider-red/40 flex items-center justify-center shadow-xl shadow-spider-red/30 group-hover:scale-105 group-hover:border-spider-red group-hover:shadow-spider-red/50 transition-all duration-300 relative">
+                <svg class="w-20 h-20 text-spider-red drop-shadow-[0_0_12px_rgba(255,30,66,0.8)]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polygon points="50,10 85,25 78,72 50,92 22,72 15,25" stroke="#ff1e42" fill="rgba(255,30,66,0.08)" stroke-width="2.5"/>
+                  <line x1="50" y1="10" x2="50" y2="92" stroke="rgba(255,30,66,0.35)" stroke-width="1.5"/>
+                  <line x1="15" y1="25" x2="85" y2="25" stroke="rgba(255,30,66,0.3)" stroke-width="1.5"/>
+                  <line x1="22" y1="72" x2="78" y2="72" stroke="rgba(255,30,66,0.3)" stroke-width="1.5"/>
+                  <polygon points="32,38 45,46 36,54 28,45" fill="#00f0ff" stroke="#ffffff" stroke-width="1.5" class="spider-eyes-glow"/>
+                  <polygon points="68,38 55,46 64,54 72,45" fill="#00f0ff" stroke="#ffffff" stroke-width="1.5" class="spider-eyes-glow"/>
+                </svg>
+                <div class="absolute bottom-2 right-2 flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-spider-cyan opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-spider-cyan"></span>
+                </div>
               </div>
             </div>
 
-            <!-- Identity Tag -->
-            <div class="mt-4 text-center">
-              <div class="text-base font-heading font-bold text-white tracking-wide">SEIF AMR</div>
-              <div class="text-xs font-mono text-zinc-400 mt-0.5">Alexandria University &bull; CGPA 3.15</div>
+            <!-- Interactive Caption Indicator -->
+            <div id="hud-caption" class="text-center mt-2 text-[11px] font-mono text-zinc-400">
+              <span class="text-spider-cyan">&bull; Move pointer</span> across drawing to unpack layers
             </div>
 
           </div>
 
           <!-- Live Suit Telemetry & Capabilities -->
-          <div class="space-y-2.5 pt-3 border-t border-white/[0.08] font-mono text-xs">
+          <div class="space-y-2 pt-3 border-t border-white/[0.08] font-mono text-xs">
+            <div class="flex justify-between items-center text-zinc-300">
+              <span class="text-zinc-500">SCHEMATIC ENGINE</span>
+              <span class="text-spider-cyan font-medium flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-spider-cyan animate-pulse"></span>
+                Hairline Isometric &bull; 60fps
+              </span>
+            </div>
             <div class="flex justify-between items-center text-zinc-300">
               <span class="text-zinc-500">SYSTEM ARCHITECTURE</span>
-              <span class="text-spider-cyan font-medium">React &bull; Node.js</span>
+              <span class="text-zinc-200 font-medium">React &bull; Node.js &bull; APIs</span>
             </div>
             <div class="flex justify-between items-center text-zinc-300">
               <span class="text-zinc-500">AUTOMATION CORE</span>
-              <span class="text-spider-red font-medium">n8n AI Pipelines</span>
-            </div>
-            <div class="flex justify-between items-center text-zinc-300">
-              <span class="text-zinc-500">LIVE SHOWCASE</span>
-              <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-spider-cyan hover:underline inline-flex items-center gap-1">
-                <span>Seifinity</span>
-                <span>↗</span>
-              </a>
+              <span class="text-spider-red font-medium">n8n Autonomous Agents</span>
             </div>
           </div>
 
           <!-- Interactive Sensory Ripple Card Footer -->
-          <div class="mt-5 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
-            <span class="text-zinc-500">SENSORY STATUS: OPTIMAL</span>
+          <div class="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
+            <span class="text-zinc-500 flex items-center gap-1">
+              <span>SENSORY:</span> <span class="text-emerald-400 font-bold">REACTIVE</span>
+            </span>
             <button onclick="triggerSpiderPulse()" class="text-spider-red hover:text-white transition flex items-center gap-1 font-semibold cursor-pointer">
               <span>⚡ Emit Pulse</span>
             </button>
@@ -701,29 +783,42 @@
         <div class="p-6 sm:p-8 rounded-[1.2rem] bg-[#0b0e17]/95 relative overflow-hidden backdrop-blur-2xl">
           <div class="card-glare"></div>
           
-          <div class="w-full">
-            <div class="flex items-center justify-between mb-2">
-              <div class="flex items-center gap-2">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            
+            <!-- Left Info -->
+            <div class="max-w-xl">
+              <div class="flex items-center gap-2 mb-2">
                 <span class="text-xl sensory-pulse">⚡</span>
                 <span class="text-xs font-mono font-bold tracking-widest text-spider-cyan uppercase">AUTONOMOUS SYSTEMS</span>
               </div>
-              <span class="text-xs text-zinc-600 font-mono">07</span>
+              <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-spider-red via-red-400 to-spider-cyan">
+                AI &amp; Workflow Automation using n8n
+              </h3>
+              <p class="text-sm sm:text-base text-zinc-300 mt-2.5 leading-relaxed">
+                Designing intelligent end-to-end automation pipelines that chain Large Language Models, webhooks, databases, and multi-step agents to eliminate repetitive friction and power smart web apps.
+              </p>
+              
+              <div class="flex flex-wrap gap-2 sm:gap-2.5 mt-5">
+                <span class="px-3 py-1.5 text-xs font-bold rounded-lg bg-spider-red/25 text-white border border-spider-red/60 shadow-md shadow-spider-red/30 hover:scale-105 transition-transform">AI Automation using n8n</span>
+                <span class="px-3 py-1.5 text-xs rounded-lg bg-white/[0.05] border border-spider-cyan/40 text-cyan-200 hover:scale-105 transition-transform">n8n Workflow Chains</span>
+                <span class="px-3 py-1.5 text-xs rounded-lg bg-white/[0.05] border border-white/10 text-zinc-300 hover:border-white/20 transition">LLM &amp; AI Agent Orchestration</span>
+                <span class="px-3 py-1.5 text-xs rounded-lg bg-white/[0.05] border border-white/10 text-zinc-300 hover:border-white/20 transition">Webhooks &amp; REST Integrations</span>
+              </div>
             </div>
 
-            <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-spider-red via-red-400 to-spider-cyan">
-              AI &amp; Workflow Automation using n8n
-            </h3>
-
-            <p class="text-sm sm:text-base text-zinc-300 mt-2.5 leading-relaxed">
-              Designing intelligent end-to-end automation pipelines that chain Large Language Models, webhooks, databases, and multi-step agents to eliminate repetitive friction and power smart web apps.
-            </p>
-            
-            <div class="flex flex-wrap gap-2 sm:gap-2.5 mt-5">
-              <span class="px-3 py-1.5 text-xs font-bold rounded-lg bg-spider-red/25 text-white border border-spider-red/60 shadow-md shadow-spider-red/30 hover:scale-105 transition-transform">AI Automation using n8n</span>
-              <span class="px-3 py-1.5 text-xs rounded-lg bg-white/[0.05] border border-spider-cyan/40 text-cyan-200 hover:scale-105 transition-transform">n8n Workflow Chains</span>
-              <span class="px-3 py-1.5 text-xs rounded-lg bg-white/[0.05] border border-white/10 text-zinc-300 hover:border-white/20 hover:scale-105 transition">LLM &amp; AI Agent Orchestration</span>
-              <span class="px-3 py-1.5 text-xs rounded-lg bg-white/[0.05] border border-white/10 text-zinc-300 hover:border-white/20 hover:scale-105 transition">Webhooks &amp; REST Integrations</span>
+            <!-- Right: Interactive Live Hairline Schematic Container -->
+            <div class="w-full lg:w-80 p-4 rounded-xl bg-black/60 border border-white/[0.08] font-mono text-xs flex flex-col items-center">
+              <div class="w-full text-[11px] text-zinc-500 mb-2 flex items-center justify-between">
+                <span>WORKFLOW TREE SCHEMATIC</span>
+                <span class="text-spider-cyan flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-spider-cyan animate-pulse"></span>
+                  LIVE POINTER
+                </span>
+              </div>
+              <div id="n8n-hairline-stage" class="hairline-card-stage" style="max-width: 220px;"></div>
+              <div class="text-[10px] text-zinc-500 mt-2 text-center">Commit graph &amp; node hops reacting in real-time</div>
             </div>
+
           </div>
 
         </div>
@@ -784,7 +879,19 @@
             Personal digital universe showcasing interactive web interfaces, creative coding experiments, dynamic UI systems, and live deployed software. Built with modern web standards and smooth reactive interactions.
           </p>
 
-          <div class="mt-6 flex flex-wrap gap-3">
+          <!-- Interactive Schematic Preview -->
+          <div class="mt-4 p-3 rounded-xl bg-black/40 border border-white/[0.06] relative overflow-hidden group/fig">
+            <div class="flex items-center justify-between text-[11px] font-mono text-zinc-500 mb-1">
+              <span>ISOMETRIC SCHEMATIC: LAPTOP</span>
+              <span class="text-spider-red text-[10px] font-semibold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-spider-red animate-pulse"></span>
+                POINTER REACTIVE
+              </span>
+            </div>
+            <div id="project-figure-1" class="hairline-card-stage" style="max-width: 220px;"></div>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-3">
             <a href="https://seifinity-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-spider-red/15 border border-spider-red/50 text-xs font-mono text-white hover:bg-spider-red hover:shadow-lg hover:shadow-spider-red/30 transition group/btn font-semibold">
               <span>Launch Live Site</span>
               <span class="group-hover/btn:translate-x-1 transition-transform">↗</span>
@@ -796,7 +903,7 @@
           </div>
         </div>
 
-        <div class="mt-8 flex flex-wrap items-center gap-2 pt-4 border-t border-white/[0.06] text-xs font-mono text-zinc-400">
+        <div class="mt-6 flex flex-wrap items-center gap-2 pt-4 border-t border-white/[0.06] text-xs font-mono text-zinc-400">
           <span class="text-spider-cyan">React</span> &bull;
           <span>TypeScript</span> &bull;
           <span>Tailwind CSS</span> &bull;
@@ -830,7 +937,19 @@
             Scalable end-to-end client-server architecture built with a responsive React frontend paired with an Express/Node.js backend. Features secure authentication, RESTful API endpoints, CRUD data pipelines, and database persistence.
           </p>
 
-          <div class="mt-6 flex flex-wrap gap-3">
+          <!-- Interactive Schematic Preview -->
+          <div class="mt-4 p-3 rounded-xl bg-black/40 border border-white/[0.06] relative overflow-hidden group/fig">
+            <div class="flex items-center justify-between text-[11px] font-mono text-zinc-500 mb-1">
+              <span>ISOMETRIC SCHEMATIC: SERVER RACK</span>
+              <span class="text-spider-cyan text-[10px] font-semibold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-spider-cyan animate-pulse"></span>
+                POINTER REACTIVE
+              </span>
+            </div>
+            <div id="project-figure-2" class="hairline-card-stage" style="max-width: 220px;"></div>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-3">
             <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-spider-cyan/10 border border-spider-cyan/40 text-xs font-mono text-spider-cyan font-semibold">
               <span class="w-1.5 h-1.5 rounded-full bg-spider-cyan animate-pulse"></span>
               Production Ready
@@ -841,7 +960,7 @@
           </div>
         </div>
 
-        <div class="mt-8 flex flex-wrap items-center gap-2 pt-4 border-t border-white/[0.06] text-xs font-mono text-zinc-400">
+        <div class="mt-6 flex flex-wrap items-center gap-2 pt-4 border-t border-white/[0.06] text-xs font-mono text-zinc-400">
           <span class="text-spider-red">Node.js</span> &bull;
           <span>Express.js</span> &bull;
           <span>MongoDB / Supabase</span> &bull;
@@ -1200,6 +1319,155 @@
           mobileBtn.classList.remove('active');
           mobileBtn.setAttribute('aria-expanded', 'false');
         });
+      });
+    }
+
+    // 8. Global Helper for CLI Copy
+    window.copyCliCommand = function(text, btn) {
+      if (!navigator.clipboard) {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      } else {
+        navigator.clipboard.writeText(text);
+      }
+      if (btn) {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = `<svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        btn.classList.add('copy-success');
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('copy-success');
+        }, 2200);
+      }
+    };
+  </script>
+
+  <!-- ==========================================================================
+       FLOATING THEME SWITCHER DOCK (Discrete, Chic & Accessible)
+       ========================================================================== -->
+  <aside aria-label="Theme Switcher" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 p-1.5 rounded-full bg-zinc-950/90 backdrop-blur-xl border border-spider-red/40 shadow-2xl text-xs font-mono">
+    <span class="px-2.5 text-zinc-500 font-semibold hidden sm:inline">Theme:</span>
+    <span class="px-3 py-1.5 rounded-full bg-spider-red/20 text-spider-red font-semibold border border-spider-red/40 flex items-center gap-1.5 shadow-sm">
+      <span>🕷️</span><span>Spider</span>
+    </span>
+    <a href="blueprint.html" class="px-3 py-1.5 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-cyan-300 transition flex items-center gap-1.5 border border-transparent hover:border-cyan-500/30">
+      <span>📐</span><span>Blueprint</span>
+    </a>
+  </aside>
+
+  <!-- ==========================================================================
+       HAIRLINE ISOMETRIC FIGURES ENGINE (ESM via CDN)
+       ========================================================================== -->
+  <script type="module">
+    import { exploded, terrain, branches, cabinet, laptop } from "https://esm.sh/@lucasmarkes/hairline";
+
+    // --- 1. HERO HUD HAIRLINE ISOMETRIC CONTROLLER ---
+    let currentHudFigure = null;
+    const hudContainer = document.getElementById('hud-hairline-container');
+    const hudMask = document.getElementById('hud-mask-container');
+    const hudCaption = document.getElementById('hud-caption');
+
+    const hudTabs = {
+      exploded: document.getElementById('tab-exploded'),
+      terrain: document.getElementById('tab-terrain'),
+      mask: document.getElementById('tab-mask')
+    };
+
+    window.switchHudFigure = function(type) {
+      Object.values(hudTabs).forEach(tab => {
+        if (tab) {
+          tab.classList.remove('active');
+          tab.classList.remove('text-white');
+          tab.classList.add('text-zinc-400');
+        }
+      });
+
+      if (hudTabs[type]) {
+        hudTabs[type].classList.add('active');
+        hudTabs[type].classList.add('text-white');
+        hudTabs[type].classList.remove('text-zinc-400');
+      }
+
+      if (type === 'mask') {
+        if (currentHudFigure) {
+          currentHudFigure.destroy();
+          currentHudFigure = null;
+        }
+        if (hudContainer) hudContainer.style.display = 'none';
+        if (hudMask) hudMask.style.display = 'flex';
+        if (hudCaption) {
+          hudCaption.innerHTML = '<span class="text-spider-red">&bull; Spider-Verse</span> Holographic Crest &bull; Sensory Online';
+        }
+        return;
+      }
+
+      if (hudMask) hudMask.style.display = 'none';
+      if (hudContainer) {
+        hudContainer.style.display = 'block';
+        if (currentHudFigure) {
+          currentHudFigure.destroy();
+          currentHudFigure = null;
+        }
+        hudContainer.innerHTML = '';
+
+        if (type === 'exploded') {
+          currentHudFigure = exploded(hudContainer, {
+            intensity: 0.85,
+            theme: 'dark',
+            play: true
+          });
+          if (hudCaption) {
+            hudCaption.innerHTML = '<span class="text-spider-cyan">&bull; Move pointer</span> across drawing to unpack 4 system layers';
+          }
+        } else if (type === 'terrain') {
+          currentHudFigure = terrain(hudContainer, {
+            intensity: 0.85,
+            theme: 'dark',
+            play: true
+          });
+          if (hudCaption) {
+            hudCaption.innerHTML = '<span class="text-spider-cyan">&bull; Move pointer</span> across plinth to ripple isometric terrain';
+          }
+        }
+      }
+    };
+
+    // Auto mount default Hero exploded figure
+    if (hudContainer) {
+      window.switchHudFigure('exploded');
+    }
+
+    // --- 2. FLAGSHIP n8n AUTOMATION (branches) ---
+    const n8nStage = document.getElementById('n8n-hairline-stage');
+    if (n8nStage) {
+      branches(n8nStage, {
+        intensity: 0.75,
+        theme: 'dark',
+        play: true
+      });
+    }
+
+    // --- 3. PROJECT 1: SEIFINITY (laptop) ---
+    const proj1Stage = document.getElementById('project-figure-1');
+    if (proj1Stage) {
+      laptop(proj1Stage, {
+        intensity: 0.75,
+        theme: 'dark',
+        play: true
+      });
+    }
+
+    // --- 4. PROJECT 2: FULL-STACK (cabinet) ---
+    const proj2Stage = document.getElementById('project-figure-2');
+    if (proj2Stage) {
+      cabinet(proj2Stage, {
+        intensity: 0.8,
+        theme: 'dark',
+        play: true
       });
     }
   </script>

@@ -1042,16 +1042,23 @@
   </footer>
 
   <!-- ==========================================================================
-       FLOATING THEME SWITCHER (Discrete & Chic in corner)
+       FLOATING THEME SWITCHER DOCK
        ========================================================================== -->
-  <div class="fixed bottom-5 right-5 z-50">
-    <div class="px-3 py-2 rounded-2xl bg-zinc-950/90 border border-spider-red/35 backdrop-blur-xl shadow-2xl flex items-center gap-2 text-xs font-mono">
-      <span class="text-zinc-500 text-[11px]">THEME:</span>
-      <span class="px-2 py-1 rounded-lg bg-spider-red/20 text-spider-red font-semibold border border-spider-red/40">🕷️ Spider</span>
-      <a href="wood.html" class="px-2 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition">🪵 Wood</a>
-      <a href="beige.html" class="px-2 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition">☕ Beige</a>
-    </div>
-  </div>
+  <aside aria-label="Theme Switcher" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 p-1.5 rounded-full bg-zinc-950/90 backdrop-blur-xl border border-spider-red/40 shadow-2xl text-xs font-mono">
+    <span class="px-2.5 text-zinc-500 font-semibold hidden sm:inline">Theme:</span>
+    <span class="px-3 py-1.5 rounded-full bg-spider-red/20 text-spider-red font-semibold border border-spider-red/40 flex items-center gap-1.5 shadow-sm">
+      <span>🕷️</span><span>Spider</span>
+    </span>
+    <a href="blueprint.html" class="px-3 py-1.5 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-cyan-300 transition flex items-center gap-1.5 border border-transparent hover:border-cyan-500/30">
+      <span>📐</span><span>Blueprint</span>
+    </a>
+    <a href="beige.html" class="px-3 py-1.5 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-amber-200 transition flex items-center gap-1.5 border border-transparent hover:border-amber-500/30">
+      <span>☕</span><span>Beige</span>
+    </a>
+    <a href="wood.html" class="px-3 py-1.5 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition flex items-center gap-1.5 border border-transparent hover:border-amber-600/30">
+      <span>🪵</span><span>Wood</span>
+    </a>
+  </aside>
 
   <!-- ==========================================================================
        INTERACTIVE JAVASCRIPT ENGINE
